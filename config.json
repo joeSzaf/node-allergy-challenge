@@ -1,8 +1,0 @@
-{
-  "baseURL": "http://localhost:3000",
-  "clientId": "cecc0a125cf74a07a784406a395ee8ed",
-  "__clientId": "cecc0a125cf74a07a784406a395ee8ed",
-  "email": {
-    "sender": "address@demo.com"
-  }
-}
