@@ -2,12 +2,18 @@
 var presto = require('presto-client')
 var client = new presto.Client({user: 'presto', host: '34.74.56.14', catalog: 'hive', schema: 'leap'})
 
+// sample allergy data
+// {"resourceType":"AllergyIntolerance","id":"6ea84b5b-958e-46e4-9bc1-b433759e054d","onset":"2018-07-28T01:24:50+00:00","patient":{"reference":"urn:uuid:8f26f086-222e-44eb-936b-8dae1171182c"},"substance":{"coding":[{"system":"http://snomed.info/sct","code":"419474003","display":"Allergy to mould"}],"text":"Allergy to mould"},"status":"active","criticality":"CRITL","type":"allergy","category":"food","meta":{}}
+
 // Construct SQL query
 var query = "SELECT " +
-              "json_extract_scalar(json,'$.name[0].family[0]'), " +
-              "json_extract_scalar(json,'$.name[0].given[0]') from patient p " +
-              "WHERE json_extract_scalar(json,'$.name[0].family[0]')  = 'Zboncak558' " +
-              "AND json_extract_scalar(json,'$.name[0].given[0]') = 'Marshall526'";
+              "json_extract_scalar(json,'$.substance.coding[0].code'), " +
+              "json_extract_scalar(json,'$.substance.coding[0].display') from allergyintolerance a"
+
+              // "json_extract_scalar(json,'$.name[0].family[0]'), " +
+              // "json_extract_scalar(json,'$.name[0].given[0]') from patient p " +
+              // "WHERE json_extract_scalar(json,'$.name[0].family[0]')  = 'Zboncak558' " +
+              // "AND json_extract_scalar(json,'$.name[0].given[0]') = 'Marshall526'";
               // "JOIN immunization i " +
               // "ON (split_part(json_extract_scalar(i.json, '$.patient.reference'), ':', 3) = json_extract_scalar(p.json, '$.id')) " +
               // "WHERE " +
